@@ -6,6 +6,33 @@ body {
     text-align: center;
 }
 
+.navbar {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.navbar .logo {
+    height: 50px;
+    vertical-align: middle;
+}
+
+.navbar .club-info {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.navbar h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.navbar p {
+    margin: 0;
+    font-size: 14px;
+}
+
 .container {
     width: 80%;
     margin: auto;
@@ -13,22 +40,46 @@ body {
 }
 
 .input-group {
-    margin-bottom: 20px;
+    margin: 20px 0;
 }
 
 .court {
     background: white;
     border: 1px solid #ddd;
-    padding: 10px;
     margin-bottom: 20px;
+    padding: 10px 0;
+    position: relative;
+}
+
+.court h2 {
+    margin-top: 0;
+    padding-top: 10px;
+    background: white;
+    width: 100%;
+    position: relative;
+    z-index: 2; /* Ensure the title is above the net */
+}
+
+.side {
+    display: inline-block;
+    width: 45%;
+    vertical-align: top;
 }
 
 .player {
     border: 1px solid #ddd;
     padding: 10px;
     margin: 10px;
-    display: inline-block;
-    width: calc(50% - 22px);
+}
+
+.net {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: black;
+    z-index: 1; /* Lower than the title */
 }
 
 label {

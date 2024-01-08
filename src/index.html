@@ -6,14 +6,22 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <nav class="navbar">
+        <img src="logo_club.png" alt="Logo du Club" class="logo">
+        <div class="club-info">
+            <h1>Nom du Club de Badminton</h1>
+            <p>Organisez vos matchs facilement avec ShuttleMatch</p>
+        </div>
+    </nav>
+
     <div class="container">
         <div class="input-group">
             <label for="playerCount">Saisissez le nombre de joueurs (entre 4 et 12) :</label>
             <input type="number" id="playerCount" min="4" max="12">
         </div>
 
-        <!-- Exemple avec 3 terrains -->
         <div class="court" id="court1">
+            <h2>Terrain 1</h2>
             <div class="side">
                 <div class="player">Joueur 1A</div>
                 <div class="player">Joueur 1B</div>
@@ -24,7 +32,9 @@
                 <div class="player">Joueur 1D</div>
             </div>
         </div>
+
         <div class="court" id="court2">
+            <h2>Terrain 2</h2>
             <div class="side">
                 <div class="player">Joueur 2A</div>
                 <div class="player">Joueur 2B</div>
@@ -35,7 +45,9 @@
                 <div class="player">Joueur 2D</div>
             </div>
         </div>
+
         <div class="court" id="court3">
+            <h2>Terrain 3</h2>
             <div class="side">
                 <div class="player">Joueur 3A</div>
                 <div class="player">Joueur 3B</div>
