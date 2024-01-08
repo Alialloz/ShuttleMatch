@@ -105,49 +105,49 @@ function displayCourts(courts) {
 
 
 // Assignation des joueurs aux terrains en fonction de leur nombre
-function assignPlayersToCourts(players) {
+function assignPlayersToCourts(players, nbTerrains) {
+    let nbJoueurs = players.length;
     let courts = {
         court1: [],
         court2: [],
         court3: []
     };
-
-    // Tant qu'il y a des joueurs non assignés
-    while (players.length > 0) {
-        if (players.length == 12) {
-            // Si assez de joueurs pour 3 matchs 2v2
-            courts.court1.push(...players.splice(0, 4));
-            courts.court2.push(...players.splice(0, 4));
-            courts.court3.push(...players.splice(0, 4));
+    if (nbTerrains == 1){
+        if(nbJoueurs >= 4){
+            // Generer liste match 2v2 avec liste players
+        }else {
+            // Generer liste match 1v1 avec liste players
         }
-        else if (players.length >= 6) {
-            // Si assez de joueurs pour 3 matchs 2v2
-            courts.court1.push(...players.splice(0, 4));
-            courts.court2.push(...players.splice(0, 4));
-            courts.court3.push(...players.splice(0, 2));
-        }else if (players.length === 5) {
-            // Un match 2v2 et un match 2v1
-            courts.court1.push(...players.splice(0, 2));
-            courts.court2.push(...players.splice(0, 3));
-        } else if (players.length === 4) {
-            // Deux matchs 2v2
-            courts.court1.push(...players.splice(0, 2));
-            courts.court2.push(...players.splice(0, 2));
-        } else if (players.length === 3) {
-            // Un match 2v1
-            courts.court1.push(...players.splice(0, 2));
-            courts.court3.push(players.splice(0, 1)[0]);
-        } else if (players.length === 2) {
-            // Un match 1v1
-            courts.court1.push(...players.splice(0, 2));
-        } else {
-            // Un joueur seul (pas idéal, mais assigné)
-            courts.court1.push(players.splice(0, 1)[0]);
+
+    }else if (nbTerrains == 2){
+        if(nbJoueurs >= 8){
+            // Generer liste match 2v2 avec liste players pour le terrain 1 et 2
+        }else if (nbJoueurs >= 6){
+            // Generer liste match 2v2 avec liste players pour le terrain 1 et liste match 1v1 pour le terrain 2
+        }else if (nbJoueurs >= 4){
+            // Generer liste match 2v2 avec liste players pour le terrain 1 et liste match 1v1 pour le terrain 2
+        }else {
+            // Generer un message d'erreur : joueurs insuffisants pour 2 terrains, pour 2 terrains il vous faut au moins 4 joueurs
+        }
+    }else if (nbTerrains == 3){
+        if(nbJoueurs == 12){
+            // Generer liste match 2v2 avec liste players pour le terrain 1, 2 et 3
+        }else if (nbJoueurs >= 10){
+            // Generer liste match 2v2 avec liste players pour le terrain 1 et liste match 1v1 pour le terrain 2
+        }else if (nbJoueurs >= 8){
+            // Generer liste match 2v2 avec liste players pour le terrain 1 et liste match 1v1 pour le terrain 2
+        }else if (nbJoueurs >= 6){
+            // Generer liste match 2v2 avec liste players pour le terrain 1 et liste match 1v1 pour le terrain 2
+        }else {
+            // Generer un message d'erreur : joueurs insuffisants pour 2 terrains, pour 3 terrains il vous faut au moins 6 joueurs
         }
     }
-
     return courts;
 }
+
+
+genererListeMatch2v2()
+
 
 // Mélange aléatoirement un tableau
 function shuffleArray(array) {
