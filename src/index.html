@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Générateur de Matchs de Badminton</title>
+    <style>
+        .terrain { margin-bottom: 20px; }
+        .joueur { margin: 5px; }
+    </style>
+</head>
+<body>
+    <div>
+        <label>Nombre de joueurs: <input type="number" id="numPlayers" value="6"></label>
+        <button onclick="initialiserJoueurs()">Initialiser Joueurs</button>
+    </div>
+    <div id="joueursInputs"></div>
+    <button onclick="genererMatch()">Générer Match</button>
+
+    <h2>Terrain #1</h2>
+    <div class="terrain" id="terrain1"></div>
+    <h2>Terrain #2</h2>
+    <div class="terrain" id="terrain2"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
