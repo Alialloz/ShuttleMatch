@@ -20,6 +20,12 @@ function createPlayerInputs() {
 
 }
 
+// Enleve les champs de saisie pour l'entrée des joueurs
+function removePlayerInputForm() {
+    var playerNamesContainer = document.getElementById("playerNames");
+    playerNamesContainer.innerHTML = ""; // Effacer le contenu du conteneur
+}
+
 // Collecte et traite les noms des joueurs soumis
 function collectPlayerNames() {
     var playerCount = document.getElementById("playerCount").value;
@@ -39,6 +45,7 @@ function collectPlayerNames() {
     // Assigner les joueurs aux terrains
     let courts = assignPlayersToCourts(playersForAssignment);
 
+    removePlayerInputForm();
     // Afficher les joueurs sur les terrains
     displayCourts(courts);
 
@@ -107,7 +114,13 @@ function assignPlayersToCourts(players) {
 
     // Tant qu'il y a des joueurs non assignés
     while (players.length > 0) {
-        if (players.length >= 6) {
+        if (players.length == 12) {
+            // Si assez de joueurs pour 3 matchs 2v2
+            courts.court1.push(...players.splice(0, 4));
+            courts.court2.push(...players.splice(0, 4));
+            courts.court3.push(...players.splice(0, 4));
+        }
+        else if (players.length >= 6) {
             // Si assez de joueurs pour 3 matchs 2v2
             courts.court1.push(...players.splice(0, 4));
             courts.court2.push(...players.splice(0, 4));
@@ -147,56 +160,4 @@ function shuffleArray(array) {
     }
 }
 
-// Affiche la liste des prochains matchs
-function displayNextMatches(players) {
-    if (players.length === 0) {
-        const matchList = document.querySelector('.match-list');
-        matchList.innerHTML = '<li>Pas de futurs matchs</li>';
-    } else {
-        shuffleArray(players);
-        listeJoueurs = [...players];
-        let courts = assignPlayersToCourts(players);
 
-        const matchList = document.querySelector('.match-list');
-        matchList.innerHTML = '';
-
-        let matchesExist = false;
-
-        for (const [courtId, courtPlayers] of Object.entries(courts)) {
-            if (courtPlayers.length > 0) {
-                matchesExist = true;
-
-                // Diviser les joueurs en deux équipes
-                let team1 = courtPlayers.slice(0, Math.ceil(courtPlayers.length / 2));
-                let team2 = courtPlayers.slice(Math.ceil(courtPlayers.length / 2));
-
-                // Créer une description du match
-                let matchDescription = `${team1.join(', ')} vs ${team2.join(', ')}`;
-
-                // Créer un élément de liste pour le match
-                const listItem = document.createElement('li');
-                listItem.textContent = matchDescription + ` (Terrain ${courtId.charAt(courtId.length - 1)})`;
-                matchList.appendChild(listItem);
-            }
-        }
-
-        // Si aucun match n'est programmé, affichez le message
-        if (!matchesExist) {
-            matchList.innerHTML = '<li>Pas de futurs matchs</li>';
-        }
-    }
-}
-
-
-// Gestionnaire de clic pour le bouton "Jouer prochain match"
-document.getElementById("playNextMatch").addEventListener("click", function() {
-    // Récupérer les matchs actuels en attente
-    let listeDup = [...listeJoueurs];
-    let listeDup2 = [...listeJoueurs];
-
-    let courts = assignPlayersToCourts(listeDup);
-
-    // Afficher ces matchs sur les terrains
-    displayCourts(courts);
-    displayNextMatches(listeDup2);
-});
