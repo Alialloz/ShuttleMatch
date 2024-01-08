@@ -1,3 +1,5 @@
+var listeJoueurs = [];
+
 function createPlayerInputs() {
     var playerCount = document.getElementById("playerCount").value;
     var playerNamesContainer = document.getElementById("playerNames");
@@ -23,6 +25,7 @@ function collectPlayerNames() {
 
     // Créer une copie du tableau pour l'assignation des terrains
     let playersForAssignment = [...playerNames];
+    listeJoueurs = [...playerNames];
 
     // Assigner les joueurs aux terrains
     let courts = assignPlayersToCourts(playersForAssignment);
@@ -126,6 +129,7 @@ function displayNextMatches(players) {
         matchList.innerHTML = '<li>Pas de futurs matchs</li>';
     } else {
         shuffleArray(players);
+        listeJoueurs = [...players];
         let courts = assignPlayersToCourts(players);
 
         const matchList = document.querySelector('.match-list');
@@ -158,3 +162,14 @@ function displayNextMatches(players) {
     }
 }
 
+document.getElementById("playNextMatch").addEventListener("click", function() {
+    // Récupérer les matchs actuels en attente
+    let listeDup = [...listeJoueurs];
+    let listeDup2 = [...listeJoueurs];
+
+    let courts = assignPlayersToCourts(listeDup);
+
+    // Afficher ces matchs sur les terrains
+    displayCourts(courts);
+    displayNextMatches(listeDup2);
+});
