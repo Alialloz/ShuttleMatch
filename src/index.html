@@ -7,9 +7,9 @@
 </head>
 <body>
     <nav class="navbar">
-        <img src="logo_club.png" alt="Logo du Club" class="logo">
+        <img src="./images/logo_club.png" alt="Logo de ShuttleMatch" class="logo">
         <div class="club-info">
-            <h1>Nom du Club de Badminton</h1>
+            <h1>ShuttleMatch</h1>
             <p>Organisez vos matchs facilement avec ShuttleMatch</p>
         </div>
     </nav>
@@ -18,7 +18,10 @@
         <div class="input-group">
             <label for="playerCount">Saisissez le nombre de joueurs (entre 4 et 12) :</label>
             <input type="number" id="playerCount" min="4" max="12">
+            <button onclick="createPlayerInputs()">Confirmer</button>
         </div>
+    
+        <div id="playerNames"></div>
 
         <div class="court" id="court1">
             <h2>Terrain 1</h2>
@@ -59,5 +62,15 @@
             </div>
         </div>
     </div>
+    <div class="match-banner">
+        <h3>Matchs en attente</h3>
+        <ul class="match-list">
+            <li>Équipe 1A vs Équipe 2A</li>
+            <li>Équipe 1B vs Équipe 2B</li>
+            <!-- Ajoutez plus de matchs ici -->
+        </ul>
+    </div>
+
+<script src="script.js"></script>
 </body>
 </html>

@@ -11,11 +11,31 @@ body {
     color: white;
     padding: 10px 0;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.club-info {
+    display: flex;
+    align-items: center;
+}
+
+.club-info h1 {
+    margin: 0 10px 0 0;
+    font-size: 24px;
+}
+
+.club-info p {
+    margin: 0;
+    font-size: 14px;
+    text-align: left;
 }
 
 .navbar .logo {
-    height: 50px;
-    vertical-align: middle;
+    height: 80px; 
+    border-radius: 10px; 
+    margin-right: 20px; 
 }
 
 .navbar .club-info {
@@ -34,11 +54,34 @@ body {
 }
 
 .container {
-    width: 80%;
-    margin: auto;
-    overflow: hidden;
+    width: 70%; /* Réduction pour faire de la place pour la bannière */
+    float: left; /* Alignement à gauche */
 }
 
+.match-banner {
+    width: 30%; /* Largeur de la bannière */
+    float: right; /* Alignement à droite */
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #f0f0f0;
+    height: 100vh; /* Hauteur de la vue */
+}
+
+.match-banner h3 {
+    margin-top: 0;
+}
+
+.match-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.match-list li {
+    margin-bottom: 10px;
+    padding: 5px;
+    background-color: white;
+    border: 1px solid #ddd;
+}
 .input-group {
     margin: 20px 0;
 }
@@ -57,7 +100,7 @@ body {
     background: white;
     width: 100%;
     position: relative;
-    z-index: 2; /* Ensure the title is above the net */
+    z-index: 2; 
 }
 
 .side {
@@ -79,9 +122,17 @@ body {
     bottom: 0;
     width: 2px;
     background: black;
-    z-index: 1; /* Lower than the title */
+    z-index: 1; 
 }
 
 label {
+    margin-right: 10px;
+}
+
+.player-name-input {
+    margin: 10px 0;
+}
+
+.player-name-input label {
     margin-right: 10px;
 }
