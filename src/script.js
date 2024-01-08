@@ -65,10 +65,21 @@ function displayCourts(courts) {
             side2.className = 'side';
 
             players.forEach((player, index) => {
+                // Créer un conteneur pour le joueur et l'image
                 const playerDiv = document.createElement('div');
                 playerDiv.className = 'player';
-                playerDiv.textContent = player;
-                
+
+                // Choisir l'image en fonction de la position du joueur
+                const playerImage = document.createElement('img');
+                playerImage.src = index % 2 === 0 ? './images/joueur1.png' : './images/joueur2.png'; 
+                playerImage.alt = 'Photo de ' + player; 
+                playerDiv.appendChild(playerImage);
+
+                // Ajouter le nom du joueur
+                const playerName = document.createElement('span');
+                playerName.textContent = player;
+                playerDiv.appendChild(playerName);
+
                 // Répartir les joueurs sur les deux côtés du terrain
                 if (index % 2 === 0) {
                     side1.appendChild(playerDiv);
@@ -83,6 +94,8 @@ function displayCourts(courts) {
         }
     }
 }
+
+
 
 // Assignation des joueurs aux terrains en fonction de leur nombre
 function assignPlayersToCourts(players) {

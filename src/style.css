@@ -119,10 +119,20 @@ body {
 
 /* Styles pour chaque joueur sur le terrain */
 .player {
+    display: flex; /* Utilisez flexbox pour aligner l'image et le texte */
+    align-items: center; /* Centre verticalement les éléments dans le div */
     border: 1px solid #ddd;
-    padding: 10px;
+    padding: 5px;
     margin: 10px;
 }
+
+.player img {
+    width: 30px; /* Réglage de la largeur de l'image */
+    height: 30px; /* Réglage de la hauteur de l'image */
+    border-radius: 50%; /* Rendre l'image circulaire */
+    margin-right: 10px; /* Ajouter une marge entre l'image et le texte */
+}
+
 
 /* Styles pour le filet au milieu de chaque terrain */
 .net {
