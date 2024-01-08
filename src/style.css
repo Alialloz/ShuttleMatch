@@ -1,3 +1,11 @@
+/* 
+    Titre: ShuttleMatch - Feuille de Style
+    Description: Styles CSS pour l'application web ShuttleMatch. Contient les règles de mise en forme pour l'interface utilisateur.
+    Auteur: NAYERI POOR Ali
+    GitHub: https://github.com/Alialloz
+*/
+
+/* Styles globaux du corps de la page */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -6,6 +14,7 @@ body {
     text-align: center;
 }
 
+/* Styles de la barre de navigation */
 .navbar {
     background-color: #333;
     color: white;
@@ -16,76 +25,73 @@ body {
     align-items: center;
 }
 
+/* Styles pour les informations du club dans la barre de navigation */
 .club-info {
     display: flex;
     align-items: center;
 }
 
+/* Styles pour le titre du club dans la barre de navigation */
 .club-info h1 {
     margin: 0 10px 0 0;
     font-size: 24px;
 }
 
+/* Styles pour le paragraphe (slogan) du club dans la barre de navigation */
 .club-info p {
     margin: 0;
     font-size: 14px;
     text-align: left;
 }
 
+/* Styles pour le logo du club dans la barre de navigation */
 .navbar .logo {
-    height: 80px; 
-    border-radius: 10px; 
-    margin-right: 20px; 
+    height: 80px;
+    border-radius: 10px;
+    margin-right: 20px;
 }
 
-.navbar .club-info {
-    display: inline-block;
-    margin-left: 20px;
-}
-
-.navbar h1 {
-    margin: 0;
-    font-size: 24px;
-}
-
-.navbar p {
-    margin: 0;
-    font-size: 14px;
-}
-
+/* Conteneur principal pour le contenu interactif */
 .container {
-    width: 70%; /* Réduction pour faire de la place pour la bannière */
-    float: left; /* Alignement à gauche */
+    width: 70%;
+    float: left;
 }
 
+/* Styles pour la bannière affichant les matchs en attente */
 .match-banner {
-    width: 30%; /* Largeur de la bannière */
-    float: right; /* Alignement à droite */
+    width: 30%;
+    float: right;
     padding: 20px;
     box-sizing: border-box;
     background-color: #f0f0f0;
-    height: 100vh; /* Hauteur de la vue */
+    height: 100vh;
 }
 
+/* Styles pour le titre de la bannière des matchs en attente */
 .match-banner h3 {
     margin-top: 0;
 }
 
+/* Styles pour la liste des matchs en attente */
 .match-list {
     list-style-type: none;
     padding: 0;
 }
 
+/* Styles pour chaque élément de la liste des matchs en attente */
 .match-list li {
     margin-bottom: 10px;
     padding: 5px;
     background-color: white;
     border: 1px solid #ddd;
 }
+
+/* Styles pour le groupe de saisie des noms des joueurs */
 .input-group {
     margin: 20px 0;
 }
 
+/* Styles pour chaque terrain de badminton */
 .court {
     background: white;
     border: 1px solid #ddd;
@@ -94,27 +100,31 @@ body {
     position: relative;
 }
 
+/* Styles pour le titre de chaque terrain */
 .court h2 {
     margin-top: 0;
     padding-top: 10px;
     background: white;
     width: 100%;
     position: relative;
-    z-index: 2; 
+    z-index: 2;
 }
 
+/* Styles pour chaque côté du terrain */
 .side {
     display: inline-block;
     width: 45%;
     vertical-align: top;
 }
 
+/* Styles pour chaque joueur sur le terrain */
 .player {
     border: 1px solid #ddd;
     padding: 10px;
     margin: 10px;
 }
 
+/* Styles pour le filet au milieu de chaque terrain */
 .net {
     position: absolute;
     left: 50%;
@@ -122,13 +132,15 @@ body {
     bottom: 0;
     width: 2px;
     background: black;
-    z-index: 1; 
+    z-index: 1;
 }
 
+/* Styles pour les labels des champs de saisie des noms des joueurs */
 label {
     margin-right: 10px;
 }
 
+/* Styles pour chaque champ de saisie de nom de joueur */
 .player-name-input {
     margin: 10px 0;
 }

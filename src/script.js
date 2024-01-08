@@ -1,5 +1,13 @@
+/* 
+    Titre: ShuttleMatch - Script Principal
+    Description: Script JavaScript pour l'application web ShuttleMatch. Gère la logique de l'interface utilisateur, les événements et les données des matchs.
+    Auteur: NAYERI POOR Ali
+    GitHub: https://github.com/Alialloz
+*/
+
 var listeJoueurs = [];
 
+// Crée des champs de saisie pour entrer les noms des joueurs
 function createPlayerInputs() {
     var playerCount = document.getElementById("playerCount").value;
     var playerNamesContainer = document.getElementById("playerNames");
@@ -12,6 +20,7 @@ function createPlayerInputs() {
 
 }
 
+// Collecte et traite les noms des joueurs soumis
 function collectPlayerNames() {
     var playerCount = document.getElementById("playerCount").value;
     var playerNames = [];
@@ -37,7 +46,7 @@ function collectPlayerNames() {
     displayNextMatches(playerNames);
 }
 
-
+// Affiche les joueurs sur les terrains
 function displayCourts(courts) {
     // Itérer sur chaque terrain et mettre à jour l'affichage
     for (const [courtId, players] of Object.entries(courts)) {
@@ -75,6 +84,7 @@ function displayCourts(courts) {
     }
 }
 
+// Assignation des joueurs aux terrains en fonction de leur nombre
 function assignPlayersToCourts(players) {
     let courts = {
         court1: [],
@@ -113,6 +123,7 @@ function assignPlayersToCourts(players) {
     return courts;
 }
 
+// Mélange aléatoirement un tableau
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         // Générer un index aléatoire inférieur à i
@@ -123,6 +134,7 @@ function shuffleArray(array) {
     }
 }
 
+// Affiche la liste des prochains matchs
 function displayNextMatches(players) {
     if (players.length === 0) {
         const matchList = document.querySelector('.match-list');
@@ -162,6 +174,8 @@ function displayNextMatches(players) {
     }
 }
 
+
+// Gestionnaire de clic pour le bouton "Jouer prochain match"
 document.getElementById("playNextMatch").addEventListener("click", function() {
     // Récupérer les matchs actuels en attente
     let listeDup = [...listeJoueurs];

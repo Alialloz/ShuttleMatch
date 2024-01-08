@@ -1,3 +1,9 @@
+<!-- 
+    Titre: ShuttleMatch - Générateur de Matchs de Badminton
+    Description: Interface utilisateur principale pour l'application web ShuttleMatch, permettant l'organisation de matchs de badminton.
+    Auteur: NAYERI POOR Ali
+    GitHub: https://github.com/Alialloz
+-->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -6,6 +12,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Barre de navigation avec logo et informations du club -->
     <nav class="navbar">
         <img src="./images/logo_club.png" alt="Logo de ShuttleMatch" class="logo">
         <div class="club-info">
@@ -14,40 +21,43 @@
         </div>
     </nav>
 
+    <!-- Conteneur principal pour la saisie du nombre de joueurs et les noms des joueurs -->
     <div class="container">
+        <!-- Groupe de saisie pour le nombre de joueurs -->
         <div class="input-group">
             <label for="playerCount">Saisissez le nombre de joueurs (entre 4 et 12) :</label>
             <input type="number" id="playerCount" min="4" max="12">
             <button onclick="createPlayerInputs()">Confirmer</button>
         </div>
     
+        <!-- Conteneur pour les noms des joueurs qui seront générés dynamiquement -->
         <div id="playerNames"></div>
 
-        <!-- Structure des terrains ajustée pour la manipulation JavaScript -->
+        <!-- Structures des terrains pour l'affichage des matchs -->
         <div class="court" id="court1">
             <h2>Terrain 1</h2>
             <div class="net"></div>
         </div>
-
         <div class="court" id="court2">
             <h2>Terrain 2</h2>
             <div class="net"></div>
         </div>
-
         <div class="court" id="court3">
             <h2>Terrain 3</h2>
             <div class="net"></div>
         </div>
     </div>
 
+    <!-- Bannière pour afficher les matchs en attente et le bouton pour jouer le prochain match -->
     <div class="match-banner">
         <h3>Matchs en attente</h3>
         <ul class="match-list">
-            <!-- Les matchs seront insérés ici -->
+            <!-- Les matchs en attente seront insérés ici -->
         </ul>
         <button id="playNextMatch">Jouer prochain match</button>
     </div>
 
+    <!-- Chargement du script JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>
