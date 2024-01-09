@@ -17,12 +17,15 @@ var joueursTerrains3 = [];
 var nombreDeJoueurs = 0;
 var nombreDeTerrains = 0;
 
+var courts = [];
+
 // Crée des champs de saisie pour entrer les noms des joueurs
 function createPlayerInputs() {
      // Lire le nombre de joueurs depuis l'input
      nombreDeJoueurs = parseInt(document.getElementById("playerCount").value);
      // Lire le nombre de terrains depuis l'input
      nombreDeTerrains = parseInt(document.getElementById("courtCount").value);
+     console.log(nombreDeJoueurs, nombreDeTerrains)
     var playerCount = document.getElementById("playerCount").value;
     var playerNamesContainer = document.getElementById("playerNames");
     playerNamesContainer.innerHTML = "";
@@ -42,27 +45,25 @@ function removePlayerInputForm() {
 function collectPlayerNames() {
     var playerCount = document.getElementById("playerCount").value;
     var playerNames = [];
-
     for (var i = 0; i < playerCount; i++) {
         var playerName = document.getElementById("player" + i).value;
         if (playerName !== '') {
             playerNames.push(playerName);
         }
     }
-
     // Créer une copie du tableau pour l'assignation des terrains
     let playersForAssignment = [...playerNames];
     listeJoueurs = [...playerNames];
 
-    // Assigner les joueurs aux terrains
-    let courts = assignPlayersToCourts(playersForAssignment);
+    genererMatch(playersForAssignment, nombreDeTerrains);
+    // lancerProchainsMatchs();
+    // courts = [joueursTerrains1, joueursTerrains2, joueursTerrains3];
+    console.log(listeJoueurs,listeMatch1v1,listeMatch2v2)
     // Enleve les inputs des noms de joueurs
     removePlayerInputForm();
     // Afficher les joueurs sur les terrains
     displayCourts(courts);
 
-    // Afficher les matchs en attente avec la liste originale
-    displayNextMatches(playerNames);
 }
 // Affiche les joueurs sur les terrains
 function displayCourts(courts) {
@@ -113,10 +114,10 @@ function displayCourts(courts) {
     }
 }
 // Assignation des match en fonction du nombre de joueurs et du nombre de terrain. 
-function genererMatch(players, nbTerrains) {
+function genererMatch(players, nombreDeTerrains) {
     let nbJoueurs = players.length;
   
-    if (nbTerrains == 1){
+    if (nombreDeTerrains == 1){
         if(nbJoueurs >= 4){
             // Generer liste match 2v2 avec liste players
             listeMatch2v2 = genererListeMatch2v2(players);
@@ -125,7 +126,7 @@ function genererMatch(players, nbTerrains) {
             listeMatch1v1 = genererListeMatch1v1(players);
         }
 
-    }else if (nbTerrains == 2){
+    }else if (nombreDeTerrains == 2){
         if(nbJoueurs >= 8){
             // Generer liste match 2v2 avec liste players pour le terrain 1 et 2
             listeMatch2v2 = genererListeMatch2v2(players);
@@ -139,7 +140,7 @@ function genererMatch(players, nbTerrains) {
         }else {
             // Generer un message d'erreur : joueurs insuffisants pour 2 terrains, pour 2 terrains il vous faut au moins 4 joueurs
         }
-    }else if (nbTerrains == 3){
+    }else if (nombreDeTerrains == 3){
         if(nbJoueurs == 12){
             // Generer liste match 2v2 avec liste players pour le terrain 1, 2 et 3
             listeMatch2v2 = genererListeMatch2v2(players);
@@ -189,7 +190,7 @@ function lancerProchainsMatchs(){
     joueursTerrains1 = [];
     joueursTerrains2 = [];
     joueursTerrains3 = [];
-    if (nbTerrains == 1){
+    if (nombreDeTerrains == 1){
         if(nbJoueurs >= 4){
             // Generer liste match 2v2 avec liste players
             if (listeMatch2v2.length > 0) {
@@ -206,7 +207,7 @@ function lancerProchainsMatchs(){
             }
         }
 
-    }else if (nbTerrains == 2){
+    }else if (nombreDeTerrains == 2){
         if(nbJoueurs >= 8){
             // Generer liste match 2v2 avec liste players pour le terrain 1 et 2
             if (listeMatch2v2.length > 0) {
@@ -256,7 +257,7 @@ function lancerProchainsMatchs(){
         }else {
             afficherMessageErreur("Nombre de terrains non supporté");
         }
-    }else if (nbTerrains == 3){
+    }else if (nombreDeTerrains == 3){
         if(nbJoueurs == 12){
             // Genere liste match 2v2 avec liste players pour le terrain 1, 2 et 3
             if (listeMatch2v2.length > 0) {
@@ -362,27 +363,31 @@ function getCombinations(arr, size) {
 }
 // Genere une liste de match 2v2 sans répétitions de matchs 
 // Un match est représenté par une liste des 4 joueurs participant au match, les 2 premiers de cette liste font partie de l'équipe 1 et les 2 derniers de cette liste font partie de l'équipe 2
-function genererListeMatch2v2(listeJoueurs) {
-    let listeMatchs = [];
-    let combinaisons = getCombinations(listeJoueurs, 4);
-
-    combinaisons.forEach(comb => {
-        listeMatchs.push(comb);
-    });
-
-    return listeMatchs;
+function genererListeMatch2v2(liste) {
+    let combinaisons = [];
+    for (let i = 0; i < liste.length; i++) {
+        for (let j = i + 1; j < liste.length; j++) {
+            for (let k = i + 1; k < liste.length; k++) {
+                if (k == j) continue;
+                for (let l = k + 1; l < liste.length; l++) {
+                    if (l == j) continue;
+                    combinaisons.push([liste[i], liste[j], liste[k], liste[l]]);
+                }
+            }
+        }
+    }
+    return combinaisons;
 }
 // Genere une liste de match 1v1 sans répétitions de matchs 
 // Un match est représenté par une liste de 2 joueurs participant au match, le premier fait partie de l'équipe 1 et le deuxieme fait partie de l'équipe 2
-function genererListeMatch1v1(listeJoueurs) {
-    let listeMatchs = [];
-    let combinaisons = getCombinations(listeJoueurs, 2);
-
-    combinaisons.forEach(comb => {
-        listeMatchs.push(comb);
-    });
-
-    return listeMatchs;
+function genererListeMatch1v1(liste) {
+    let combinaisons = [];
+    for (let i = 0; i < liste.length; i++) {
+        for (let j = i + 1; j < liste.length; j++) {
+            combinaisons.push([liste[i], liste[j]]);
+        }
+    }
+    return combinaisons;
 }
 // Mélange aléatoirement un tableau
 function shuffleArray(array) {
