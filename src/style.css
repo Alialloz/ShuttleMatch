@@ -167,3 +167,35 @@ label {
 .player-name-input label {
     margin-right: 10px;
 }
+
+.button {
+    background-color: #f5f5dc; /* Beige très clair */
+    color: black; /* Couleur du texte */
+    border: 3px solid #654321; /* Contour épais et marron foncé */
+    border-radius: 10px; /* Légèrement arrondi */
+    padding: 10px 20px; /* Espacement intérieur pour rendre le bouton plus grand */
+    text-align: center; /* Alignement du texte */
+    text-decoration: none; /* Enlève le soulignement des liens */
+    display: inline-block; /* Pour permettre le padding */
+    font-size: 16px; /* Taille de la police */
+    margin: 4px 2px; /* Marge autour du bouton */
+    transition-duration: 0.4s; /* Durée de l'animation pour le survol */
+    cursor: pointer; /* Curseur en forme de pointeur */
+}
+
+.button:hover {
+    background-color: #654321; /* Marron foncé au survol */
+    color: white; /* Couleur du texte au survol */
+}
+
+.label {
+    color: #654321; /* Marron foncé pour le texte */
+    font-size: 16px; /* Taille de la police */
+    margin-bottom: 5px; /* Marge en dessous du label */
+    display: inline-block; /* Pour que la marge fonctionne correctement */
+}
+
+.input-field:focus {
+    border-color: #8b4513; /* Changement de couleur de la bordure lors de la mise au point */
+    outline: none; /* Suppression de l'outline par défaut pour le focus */
+}

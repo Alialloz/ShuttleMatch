@@ -14,9 +14,9 @@
 <body>
     <!-- Barre de navigation avec logo et informations du club -->
     <nav class="navbar">
-        <img src="./images/logo_club.png" alt="Logo de ShuttleMatch" class="logo">
+        <img src="./images/logo_club.png" alt="Logo de Badminton B.S.L" class="logo">
         <div class="club-info">
-            <h1>ShuttleMatch</h1>
+            <h1>Badminton B.S.L</h1>
             <p>Organisez vos matchs facilement avec ShuttleMatch</p>
         </div>
     </nav>
@@ -28,15 +28,15 @@
 <div class="input-group">
     <div class="input-row">
         <label for="playerCount">Saisissez le nombre de joueurs (entre 4 et 12) :</label>
-        <input type="number" id="playerCount" min="4" max="12">
+        <input class="input-field" type="number" id="playerCount" min="4" max="12">
     </div>
-    
+  
     <div class="input-row">
-        <label for="courtCount">Choisissez le nombre de terrains (entre 1 et 3) :</label>
+        <label class="label" for="courtCount">Choisissez le nombre de terrains (entre 1 et 3) :</label>
         <input type="range" id="courtCount" min="1" max="3" value="1">
     </div>
     
-    <button onclick="createPlayerInputs()">Confirmer</button>
+    <button class="button" onclick="createPlayerInputs()">Confirmer</button>
 </div>
 
     
@@ -56,6 +56,11 @@
             <h2>Terrain 3</h2>
             <div class="net"></div>
         </div>
+
+        <!-- Bouton sous les terrains -->
+<div class="button-container">
+    <button class="button" id="updateButton" onclick="jouer()">Prochain match!</button>
+</div>
     </div>
 
 

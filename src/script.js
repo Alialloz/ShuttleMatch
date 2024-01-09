@@ -73,54 +73,69 @@ function displayCourts(courts) {
         const courtId = `court${courtIndex + 1}`;
         const courtElement = document.getElementById(courtId);
 
-        // Vérifier si des joueurs sont présents sur le terrain et si le terrain a été trouvé
-        if (players.length > 0 && courtElement) {
-            // Nettoyer le contenu actuel et ajouter l'en-tête du terrain
-            courtElement.innerHTML = `<h2>Terrain ${courtIndex + 1}</h2><div class="net"></div>`;
+        // Vérifier si le terrain a été trouvé
+        if (courtElement) {
+            if (players.length > 0) {
+                // Nettoyer le contenu actuel et ajouter l'en-tête du terrain
+                courtElement.innerHTML = `<h2>Terrain ${courtIndex + 1}</h2><div class="net"></div>`;
 
-            // Créer des éléments pour les côtés du terrain
-            const side1 = document.createElement('div');
-            side1.className = 'side';
-            const side2 = document.createElement('div');
-            side2.className = 'side';
+                // Créer des éléments pour les côtés du terrain
+                const side1 = document.createElement('div');
+                side1.className = 'side';
+                const side2 = document.createElement('div');
+                side2.className = 'side';
 
-            players.forEach((player, index) => {
-                // Créer un conteneur pour le joueur et l'image
-                const playerDiv = document.createElement('div');
-                playerDiv.className = 'player';
+                players.forEach((player, index) => {
+                    // Créer un conteneur pour le joueur et l'image
+                    const playerDiv = document.createElement('div');
+                    playerDiv.className = 'player';
 
-                // Choisir l'image en fonction de la position du joueur
-                const playerImage = document.createElement('img');
-                playerImage.src = index % 2 === 0 ? './images/joueur1.png' : './images/joueur2.png';
-                playerImage.alt = 'Photo de ' + player;
-                playerDiv.appendChild(playerImage);
+                    // Choisir l'image en fonction de la position du joueur
+                    const playerImage = document.createElement('img');
+                    playerImage.src = index % 2 === 0 ? './images/joueur1.png' : './images/joueur2.png';
+                    playerImage.alt = 'Photo de ' + player;
+                    playerDiv.appendChild(playerImage);
 
-                // Ajouter le nom du joueur
-                const playerName = document.createElement('span');
-                playerName.textContent = player;
-                playerDiv.appendChild(playerName);
+                    // Ajouter le nom du joueur
+                    const playerName = document.createElement('span');
+                    playerName.textContent = player;
+                    playerDiv.appendChild(playerName);
 
-                // Répartir les joueurs sur les deux côtés du terrain
-                if (players.length == 2){
-                    if (index == 1) {
-                        side2.appendChild(playerDiv);
+                    // Répartir les joueurs sur les deux côtés du terrain
+                    if (players.length == 2){
+                        if (index == 1) {
+                            side2.appendChild(playerDiv);
+                        } else {
+                            side1.appendChild(playerDiv);
+                        }
                     } else {
-                        side1.appendChild(playerDiv);
+                        if (index < 2 ) {
+                            side1.appendChild(playerDiv);
+                        } else {
+                            side2.appendChild(playerDiv);
+                        }
                     }
-                }else{
-                    if (index < 2 ) {
-                        side1.appendChild(playerDiv);
-                    } else {
-                        side2.appendChild(playerDiv);
-                    }
-                }
-            });
+                });
 
-            // Ajouter les côtés au terrain
-            courtElement.insertBefore(side1, courtElement.childNodes[1]); // Avant le filet
-            courtElement.appendChild(side2);
+                // Ajouter les côtés au terrain
+                courtElement.insertBefore(side1, courtElement.childNodes[1]); // Avant le filet
+                courtElement.appendChild(side2);
+            } else {
+                // Si pas de joueurs, nettoyer le contenu du terrain
+                courtElement.innerHTML = '';
+            }
         }
     });
+}
+
+//Implementation pour le bouton 'Jouer prochain match' 
+function jouer() {
+    shuffleArray(listeMatch1v1);
+    shuffleArray(listeMatch2v2);
+    lancerProchainsMatchs();
+    courts = [joueursTerrains1,joueursTerrains2,joueursTerrains3];
+    displayCourts(courts);
+    console.log('Le bouton a été cliqué !');
 }
 
 // Assignation des match en fonction du nombre de joueurs et du nombre de terrain. 
