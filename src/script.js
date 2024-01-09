@@ -5,6 +5,7 @@
     GitHub: https://github.com/Alialloz
 */
 
+// Déclaration des variables globales
 var listeJoueurs = [];
 var listeMatch2v2 = [];
 var listeMatch1v1 = [];
@@ -13,9 +14,15 @@ var joueursTerrains1 = [];
 var joueursTerrains2 = [];
 var joueursTerrains3 = [];
 
+var nombreDeJoueurs = 0;
+var nombreDeTerrains = 0;
 
 // Crée des champs de saisie pour entrer les noms des joueurs
 function createPlayerInputs() {
+     // Lire le nombre de joueurs depuis l'input
+     nombreDeJoueurs = parseInt(document.getElementById("playerCount").value);
+     // Lire le nombre de terrains depuis l'input
+     nombreDeTerrains = parseInt(document.getElementById("courtCount").value);
     var playerCount = document.getElementById("playerCount").value;
     var playerNamesContainer = document.getElementById("playerNames");
     playerNamesContainer.innerHTML = "";
@@ -176,8 +183,7 @@ function notIncluded(listeMatch, listeJoueursOccupes) {
     }
     return -1; // Retourne -1 si aucune liste ne répond aux critères
 }
-
-function lancerProchainMatch(){
+function lancerProchainsMatchs(){
     let nbJoueurs = listeJoueurs.length;
     let joueursOccupes = [];
     joueursTerrains1 = [];
@@ -336,7 +342,6 @@ function lancerProchainMatch(){
         }
     }
 }
-
 function getCombinations(arr, size) {
     let results = [];
 
@@ -355,8 +360,6 @@ function getCombinations(arr, size) {
     combine(arr, [], 0);
     return results;
 }
-
-// TODO 
 // Genere une liste de match 2v2 sans répétitions de matchs 
 // Un match est représenté par une liste des 4 joueurs participant au match, les 2 premiers de cette liste font partie de l'équipe 1 et les 2 derniers de cette liste font partie de l'équipe 2
 function genererListeMatch2v2(listeJoueurs) {
@@ -369,7 +372,6 @@ function genererListeMatch2v2(listeJoueurs) {
 
     return listeMatchs;
 }
-//TODO
 // Genere une liste de match 1v1 sans répétitions de matchs 
 // Un match est représenté par une liste de 2 joueurs participant au match, le premier fait partie de l'équipe 1 et le deuxieme fait partie de l'équipe 2
 function genererListeMatch1v1(listeJoueurs) {
@@ -382,7 +384,6 @@ function genererListeMatch1v1(listeJoueurs) {
 
     return listeMatchs;
 }
-
 // Mélange aléatoirement un tableau
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -393,8 +394,6 @@ function shuffleArray(array) {
         [array[i], array[j]] = [array[j], array[i]];
     }
 }
-
-
 function afficherMessageFin(message) {
     console.log(message);
     // Relancer l'index après 10 secondes
@@ -402,7 +401,6 @@ function afficherMessageFin(message) {
         location.reload();
     }, 10000);
 }
-
 function afficherMessageErreur(message) {
     console.log(message);
     // Autres actions pour gérer l'erreur
