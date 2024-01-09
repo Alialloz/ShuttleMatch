@@ -55,29 +55,30 @@ function collectPlayerNames() {
     let playersForAssignment = [...playerNames];
     listeJoueurs = [...playerNames];
 
-    genererMatch(playersForAssignment, nombreDeTerrains);
+    // genererMatch(playersForAssignment, nombreDeTerrains);
     // lancerProchainsMatchs();
-    // courts = [joueursTerrains1, joueursTerrains2, joueursTerrains3];
-    console.log(listeJoueurs,listeMatch1v1,listeMatch2v2)
+    courts = [["Eve", "Frank"]];
+    displayCourts(courts);
     // Enleve les inputs des noms de joueurs
     removePlayerInputForm();
     // Afficher les joueurs sur les terrains
     displayCourts(courts);
 
 }
-// Affiche les joueurs sur les terrains
+
 function displayCourts(courts) {
-    // Itérer sur chaque terrain et mettre à jour l'affichage
-    for (const [courtId, players] of Object.entries(courts)) {
-        // Trouver le conteneur du terrain dans le DOM
+    // Itérer sur chaque terrain
+    courts.forEach((players, courtIndex) => {
+        // Identifier le terrain dans le DOM par son indice
+        const courtId = `court${courtIndex + 1}`;
         const courtElement = document.getElementById(courtId);
 
-        // Vérifier si le terrain a été trouvé
-        if (courtElement) {
-            // Nettoyer le contenu actuel
-            courtElement.innerHTML = `<h2>${courtId.charAt(0).toUpperCase() + courtId.slice(1)}</h2><div class="net"></div>`;
+        // Vérifier si des joueurs sont présents sur le terrain et si le terrain a été trouvé
+        if (players.length > 0 && courtElement) {
+            // Nettoyer le contenu actuel et ajouter l'en-tête du terrain
+            courtElement.innerHTML = `<h2>Terrain ${courtIndex + 1}</h2><div class="net"></div>`;
 
-            // Créer des éléments pour les joueurs
+            // Créer des éléments pour les côtés du terrain
             const side1 = document.createElement('div');
             side1.className = 'side';
             const side2 = document.createElement('div');
@@ -90,8 +91,8 @@ function displayCourts(courts) {
 
                 // Choisir l'image en fonction de la position du joueur
                 const playerImage = document.createElement('img');
-                playerImage.src = index % 2 === 0 ? './images/joueur1.png' : './images/joueur2.png'; 
-                playerImage.alt = 'Photo de ' + player; 
+                playerImage.src = index % 2 === 0 ? './images/joueur1.png' : './images/joueur2.png';
+                playerImage.alt = 'Photo de ' + player;
                 playerDiv.appendChild(playerImage);
 
                 // Ajouter le nom du joueur
@@ -100,10 +101,18 @@ function displayCourts(courts) {
                 playerDiv.appendChild(playerName);
 
                 // Répartir les joueurs sur les deux côtés du terrain
-                if (index % 2 === 0) {
-                    side1.appendChild(playerDiv);
-                } else {
-                    side2.appendChild(playerDiv);
+                if (players.length == 2){
+                    if (index == 1) {
+                        side2.appendChild(playerDiv);
+                    } else {
+                        side1.appendChild(playerDiv);
+                    }
+                }else{
+                    if (index < 2 ) {
+                        side1.appendChild(playerDiv);
+                    } else {
+                        side2.appendChild(playerDiv);
+                    }
                 }
             });
 
@@ -111,8 +120,9 @@ function displayCourts(courts) {
             courtElement.insertBefore(side1, courtElement.childNodes[1]); // Avant le filet
             courtElement.appendChild(side2);
         }
-    }
+    });
 }
+
 // Assignation des match en fonction du nombre de joueurs et du nombre de terrain. 
 function genererMatch(players, nombreDeTerrains) {
     let nbJoueurs = players.length;
@@ -342,6 +352,7 @@ function lancerProchainsMatchs(){
             afficherMessageErreur("Nombre de terrains non supporté");
         }
     }
+    console.log("console log"+joueursOccupes)
 }
 function getCombinations(arr, size) {
     let results = [];
