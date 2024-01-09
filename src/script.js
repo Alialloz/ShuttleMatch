@@ -6,6 +6,10 @@
 */
 
 var listeJoueurs = [];
+var listeMatch2v2 = [];
+var listeMatch1v1 = [];
+
+
 
 // Crée des champs de saisie pour entrer les noms des joueurs
 function createPlayerInputs() {
@@ -44,7 +48,7 @@ function collectPlayerNames() {
 
     // Assigner les joueurs aux terrains
     let courts = assignPlayersToCourts(playersForAssignment);
-
+    // Enleve les inputs des noms de joueurs
     removePlayerInputForm();
     // Afficher les joueurs sur les terrains
     displayCourts(courts);
@@ -104,50 +108,67 @@ function displayCourts(courts) {
 
 
 
-// Assignation des joueurs aux terrains en fonction de leur nombre
-function assignPlayersToCourts(players, nbTerrains) {
+// Assignation des match en fonction du nombre de joueurs et du nombre de terrain. 
+function genererMatch(players, nbTerrains) {
     let nbJoueurs = players.length;
-    let courts = {
-        court1: [],
-        court2: [],
-        court3: []
-    };
+  
     if (nbTerrains == 1){
         if(nbJoueurs >= 4){
             // Generer liste match 2v2 avec liste players
+            listeMatch2v2 = genererListeMatch2v2(players);
         }else {
             // Generer liste match 1v1 avec liste players
+            listeMatch1v1 = genererListeMatch1v1(players);
         }
 
     }else if (nbTerrains == 2){
         if(nbJoueurs >= 8){
             // Generer liste match 2v2 avec liste players pour le terrain 1 et 2
+            listeMatch2v2 = genererListeMatch2v2(players);
         }else if (nbJoueurs >= 6){
             // Generer liste match 2v2 avec liste players pour le terrain 1 et liste match 1v1 pour le terrain 2
+            listeMatch2v2 = genererListeMatch2v2(players);
+            listeMatch1v1 = genererListeMatch1v1(players);
         }else if (nbJoueurs >= 4){
-            // Generer liste match 2v2 avec liste players pour le terrain 1 et liste match 1v1 pour le terrain 2
+            // Generer liste match 1v1 avec liste players pour le terrain 1 et 2
+            listeMatch1v1 = genererListeMatch1v1(players);
         }else {
             // Generer un message d'erreur : joueurs insuffisants pour 2 terrains, pour 2 terrains il vous faut au moins 4 joueurs
         }
     }else if (nbTerrains == 3){
         if(nbJoueurs == 12){
             // Generer liste match 2v2 avec liste players pour le terrain 1, 2 et 3
+            listeMatch2v2 = genererListeMatch2v2(players);
         }else if (nbJoueurs >= 10){
-            // Generer liste match 2v2 avec liste players pour le terrain 1 et liste match 1v1 pour le terrain 2
+            // Generer liste match 2v2 avec liste players pour le terrain 1 et 2 liste match 1v1 pour le terrain 3
+            listeMatch2v2 = genererListeMatch2v2(players);
+            listeMatch1v1 = genererListeMatch1v1(players);
         }else if (nbJoueurs >= 8){
-            // Generer liste match 2v2 avec liste players pour le terrain 1 et liste match 1v1 pour le terrain 2
+            // Generer liste match 2v2 avec liste players pour le terrain 1 et  2
+            listeMatch2v2 = genererListeMatch2v2(players);
         }else if (nbJoueurs >= 6){
             // Generer liste match 2v2 avec liste players pour le terrain 1 et liste match 1v1 pour le terrain 2
+            listeMatch2v2 = genererListeMatch2v2(players);
+            listeMatch1v1 = genererListeMatch1v1(players);
         }else {
             // Generer un message d'erreur : joueurs insuffisants pour 2 terrains, pour 3 terrains il vous faut au moins 6 joueurs
         }
     }
-    return courts;
+
+    let listesMatchs = {
+        listeMatch2v2,
+        listeMatch1v1
+    };
 }
 
-
-genererListeMatch2v2()
-
+// Genere une liste de match 2v2 sans répétitions de matchs 
+// Un match est représenté par une liste des 4 joueurs participant au match, les 2 premiers de cette liste font partie de l'équipe 1 et les 2 derniers de cette liste font partie de l'équipe 2
+function genererListeMatch2v2(listeJoueurs) {
+}
+// Genere une liste de match 1v1 sans répétitions de matchs 
+// Un match est représenté par une liste de 2 joueurs participant au match, le premier fait partie de l'équipe 1 et le deuxieme fait partie de l'équipe 2
+function genererListeMatch1v1(listeJoueurs) {
+}
 
 // Mélange aléatoirement un tableau
 function shuffleArray(array) {
