@@ -433,20 +433,27 @@ function getCombinations(arr, size) {
 }
 // Genere une liste de match 2v2 sans répétitions de matchs
 // Un match est représenté par une liste des 4 joueurs participant au match, les 2 premiers de cette liste font partie de l'équipe 1 et les 2 derniers de cette liste font partie de l'équipe 2
-function genererListeMatch2v2(liste) {
-    let combinaisons = [];
-    for (let i = 0; i < liste.length; i++) {
-        for (let j = i + 1; j < liste.length; j++) {
-            for (let k = i + 1; k < liste.length; k++) {
-                if (k == j) continue;
-                for (let l = k + 1; l < liste.length; l++) {
-                    if (l == j) continue;
-                    combinaisons.push([liste[i], liste[j], liste[k], liste[l]]);
-                }
+function genererListeMatch2v2function(players) {
+    let matches = [];
+    let pairs = [];
+
+    // Créer toutes les combinaisons possibles de paires de joueurs
+    for (let i = 0; i < players.length; i++) {
+        for (let j = i + 1; j < players.length; j++) {
+            pairs.push([players[i], players[j]]);
+        }
+    }
+
+    // Trouver des combinaisons uniques pour les matchs 2v2
+    for (let i = 0; i < pairs.length; i++) {
+        for (let j = i + 1; j < pairs.length; j++) {
+            if (!pairs[i].includes(pairs[j][0]) && !pairs[i].includes(pairs[j][1])) {
+                matches.push([...pairs[i], ...pairs[j]]);
             }
         }
     }
-    return combinaisons;
+
+    return matches;
 }
 // Genere une liste de match 1v1 sans répétitions de matchs
 // Un match est représenté par une liste de 2 joueurs participant au match, le premier fait partie de l'équipe 1 et le deuxieme fait partie de l'équipe 2
