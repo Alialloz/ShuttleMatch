@@ -58,17 +58,25 @@ function collectPlayerNames() {
     genererMatch(playersForAssignment, nombreDeTerrains);
     lancerProchainsMatchs();
     courts = [joueursTerrains1,joueursTerrains2,joueursTerrains3];
+
+    console.log("Toutes les combinaisons possibles :");
+    console.log("1v1:");
+    console.log(listeMatch1v1);
+    console.log("2v2:");
+    console.log(listeMatch2v2);
+
+
+    // Afficher les joueurs sur les terrains
     try {
-      displayCourts(courts);
-    } catch(error){
-      shuffleArray(listeMatch1v1)
-      shuffleArray(listeMatch2v2)
-    }
+        displayCourts(courts);
+      } catch(error){
+        shuffleArray(listeMatch1v1)
+        shuffleArray(listeMatch2v2)
+        displayCourts(courts);
+      }
+
     // Enleve les inputs des noms de joueurs
     removePlayerInputForm();
-    // Afficher les joueurs sur les terrains
-    displayCourts(courts);
-
 }
 
 function displayCourts(courts) {
@@ -248,8 +256,8 @@ function lancerProchainsMatchs(){
             }
 
             if (listeMatch2v2.length > 0) {
-                joueursTerrains2 = listeMatch2v2[(notIncluded(listeMatch2v2,joueursOccupes))];
-                listeMatch2v2.splice((notIncluded(listeMatch2v2,joueursOccupes)), 1);
+                joueursTerrains2 = listeMatch2v2[(notIncluded(listeMatch2v2,joueursOccupes))-1];
+                listeMatch2v2.splice((notIncluded(listeMatch2v2,joueursOccupes))-1, 1);
                 joueursOccupes = joueursOccupes.concat(joueursTerrains2);
             } else {
                 afficherMessageFin("Aucun match 2v2 disponible");
@@ -265,8 +273,8 @@ function lancerProchainsMatchs(){
               afficherMessageFin("Aucun match 2v2 disponible");
           }
           if (listeMatch1v1.length > 0) {
-              joueursTerrains2 = listeMatch1v1[(notIncluded(listeMatch1v1,joueursOccupes))];
-              listeMatch1v1.splice((notIncluded(listeMatch1v1,joueursOccupes)), 1);
+              joueursTerrains2 = listeMatch1v1[(notIncluded(listeMatch1v1,joueursOccupes))-1];
+              listeMatch1v1.splice((notIncluded(listeMatch1v1,joueursOccupes))-1, 1);
               joueursOccupes = joueursOccupes.concat(joueursTerrains2);
           } else {
               afficherMessageFin("Aucun match disponible");
@@ -280,8 +288,8 @@ function lancerProchainsMatchs(){
                 afficherMessageFin("Aucun match 1v1 disponible");
             }
             if (listeMatch1v1.length > 0) {
-                joueursTerrains2 = listeMatch1v1[(notIncluded(listeMatch1v1,joueursOccupes))];
-                listeMatch1v1.splice((notIncluded(listeMatch1v1,joueursOccupes)), 1);
+                joueursTerrains2 = listeMatch1v1[(notIncluded(listeMatch1v1,joueursOccupes))-1];
+                listeMatch1v1.splice((notIncluded(listeMatch1v1,joueursOccupes))-1, 1);
                 joueursOccupes = joueursOccupes.concat(joueursTerrains2);
             } else {
                 afficherMessageFin("Aucun match 1v1 disponible");
@@ -300,15 +308,15 @@ function lancerProchainsMatchs(){
                 afficherMessageFin("Aucun match 2v2 disponible");
             }
             if (listeMatch2v2.length > 0) {
-                joueursTerrains2 = listeMatch2v2[(notIncluded(listeMatch2v2,joueursOccupes))];
-                listeMatch2v2.splice((notIncluded(listeMatch2v2,joueursOccupes)), 1);
+                joueursTerrains2 = listeMatch2v2[(notIncluded(listeMatch2v2,joueursOccupes)-1)];
+                listeMatch2v2.splice((notIncluded(listeMatch2v2,joueursOccupes))-1, 1);
                 joueursOccupes = joueursOccupes.concat(joueursTerrains2);
             } else {
                 afficherMessageFin("Aucun match 2v2 disponible");
             }
             if (listeMatch2v2.length > 0) {
-                joueursTerrains3 = listeMatch2v2[(notIncluded(listeMatch2v2,joueursOccupes))];
-                listeMatch2v2.splice((notIncluded(listeMatch2v2,joueursOccupes)), 1);
+                joueursTerrains3 = listeMatch2v2[(notIncluded(listeMatch2v2,joueursOccupes))-1];
+                listeMatch2v2.splice((notIncluded(listeMatch2v2,joueursOccupes))-1, 1);
                 joueursOccupes = joueursOccupes.concat(joueursTerrains3);
             } else {
                 afficherMessageFin("Aucun match 2v2 disponible");
@@ -322,15 +330,15 @@ function lancerProchainsMatchs(){
                 afficherMessageFin("Aucun match 2v2 disponible");
             }
             if (listeMatch2v2.length > 0) {
-                joueursTerrains2 = listeMatch2v2[(notIncluded(listeMatch2v2,joueursOccupes))];
-                listeMatch2v2.splice((notIncluded(listeMatch2v2,joueursOccupes)), 1);
+                joueursTerrains2 = listeMatch2v2[(notIncluded(listeMatch2v2,joueursOccupes))-1];
+                listeMatch2v2.splice((notIncluded(listeMatch2v2,joueursOccupes))-1, 1);
                 joueursOccupes = joueursOccupes.concat(joueursTerrains2);
             } else {
                 afficherMessageFin("Aucun match 2v2 disponible");
             }
             if (listeMatch1v1.length > 0) {
-                joueursTerrains3 = listeMatch1v1[(notIncluded(listeMatch1v1,joueursOccupes))];
-                listeMatch1v1.splice((notIncluded(listeMatch1v1,joueursOccupes)), 1);
+                joueursTerrains3 = listeMatch1v1[(notIncluded(listeMatch1v1,joueursOccupes))-1];
+                listeMatch1v1.splice((notIncluded(listeMatch1v1,joueursOccupes))-1, 1);
                 joueursOccupes = joueursOccupes.concat(joueursTerrains3);
             } else {
                 afficherMessageFin("Aucun match 2v2 disponible");
@@ -344,15 +352,15 @@ function lancerProchainsMatchs(){
                 afficherMessageFin("Aucun match 2v2 disponible");
             }
             if (listeMatch1v1.length > 0) {
-                joueursTerrains2 = listeMatch1v1[(notIncluded(listeMatch1v1,joueursOccupes))];
-                listeMatch1v1.splice((notIncluded(listeMatch1v1,joueursOccupes)), 1);
+                joueursTerrains2 = listeMatch1v1[(notIncluded(listeMatch1v1,joueursOccupes))-1];
+                listeMatch1v1.splice((notIncluded(listeMatch1v1,joueursOccupes))-1, 1);
                 joueursOccupes = joueursOccupes.concat(joueursTerrains2);
             } else {
                 afficherMessageFin("Aucun match disponible");
             }
             if (listeMatch1v1.length > 0) {
-                joueursTerrains3 = listeMatch1v1[(notIncluded(listeMatch1v1,joueursOccupes))];
-                listeMatch1v1.splice((notIncluded(listeMatch1v1,joueursOccupes)), 1);
+                joueursTerrains3 = listeMatch1v1[(notIncluded(listeMatch1v1,joueursOccupes))-1];
+                listeMatch1v1.splice((notIncluded(listeMatch1v1,joueursOccupes))-1, 1);
                 joueursOccupes = joueursOccupes.concat(joueursTerrains3);
             } else {
                 afficherMessageFin("Aucun match disponible");
@@ -366,15 +374,15 @@ function lancerProchainsMatchs(){
                 afficherMessageFin("Aucun match disponible");
             }
             if (listeMatch1v1.length > 0) {
-                joueursTerrains2 = listeMatch1v1[(notIncluded(listeMatch1v1,joueursOccupes))];
-                listeMatch1v1.splice((notIncluded(listeMatch1v1,joueursOccupes)), 1);
+                joueursTerrains2 = listeMatch1v1[(notIncluded(listeMatch1v1,joueursOccupes))-1];
+                listeMatch1v1.splice((notIncluded(listeMatch1v1,joueursOccupes))-1, 1);
                 joueursOccupes = joueursOccupes.concat(joueursTerrains2);
             } else {
                 afficherMessageFin("Aucun match disponible");
             }
             if (listeMatch1v1.length > 0) {
-                joueursTerrains3 = listeMatch1v1[(notIncluded(listeMatch1v1,joueursOccupes))];
-                listeMatch1v1.splice((notIncluded(listeMatch1v1,joueursOccupes)), 1);
+                joueursTerrains3 = listeMatch1v1[(notIncluded(listeMatch1v1,joueursOccupes))-1];
+                listeMatch1v1.splice((notIncluded(listeMatch1v1,joueursOccupes))-1, 1);
                 joueursOccupes = joueursOccupes.concat(joueursTerrains3);
             } else {
                 afficherMessageFin("Aucun match disponible");
