@@ -1,4 +1,4 @@
-/* 
+/*
     Titre: ShuttleMatch - Script Principal
     Description: Script JavaScript pour l'application web ShuttleMatch. Gère la logique de l'interface utilisateur, les événements et les données des matchs.
     Auteur: NAYERI POOR Ali
@@ -58,7 +58,12 @@ function collectPlayerNames() {
     genererMatch(playersForAssignment, nombreDeTerrains);
     lancerProchainsMatchs();
     courts = [joueursTerrains1,joueursTerrains2,joueursTerrains3];
-    displayCourts(courts);
+    try {
+      displayCourts(courts);
+    } catch(error){
+      shuffleArray(listeMatch1v1)
+      shuffleArray(listeMatch2v2)
+    }
     // Enleve les inputs des noms de joueurs
     removePlayerInputForm();
     // Afficher les joueurs sur les terrains
@@ -75,6 +80,7 @@ function displayCourts(courts) {
 
         // Vérifier si le terrain a été trouvé
         if (courtElement) {
+          try{
             if (players.length > 0) {
                 // Nettoyer le contenu actuel et ajouter l'en-tête du terrain
                 courtElement.innerHTML = `<h2>Terrain ${courtIndex + 1}</h2><div class="net"></div>`;
@@ -124,11 +130,15 @@ function displayCourts(courts) {
                 // Si pas de joueurs, nettoyer le contenu du terrain
                 courtElement.innerHTML = '';
             }
+          }catch(error){
+            alert('Fin des Matchs !');
+            location.reload();
+          }
         }
     });
 }
 
-//Implementation pour le bouton 'Jouer prochain match' 
+//Implementation pour le bouton 'Jouer prochain match'
 function jouer() {
     shuffleArray(listeMatch1v1);
     shuffleArray(listeMatch2v2);
@@ -138,10 +148,10 @@ function jouer() {
     console.log('Le bouton a été cliqué !');
 }
 
-// Assignation des match en fonction du nombre de joueurs et du nombre de terrain. 
+// Assignation des match en fonction du nombre de joueurs et du nombre de terrain.
 function genererMatch(players, nombreDeTerrains) {
     let nbJoueurs = players.length;
-  
+
     if (nombreDeTerrains == 1){
         if(nbJoueurs >= 4){
             // Generer liste match 2v2 avec liste players
@@ -193,10 +203,10 @@ function genererMatch(players, nombreDeTerrains) {
 /**
  * Je te commente un peu plus en detail cette fonction pour que tu puisse bien la comprendre
  * Cherche la première liste dans 'listeMatch' qui ne contient aucun élément présent dans 'listeJoueursOccupes'.
- * 
+ *
  * @param {Array<Array<string>>} listeMatch - Une liste de listes, où chaque sous-liste contient des chaînes de caractères.
  * @param {Array<string>} listeJoueursOccupes - Une liste de chaînes de caractères représentant des joueurs occupés.
- * @return {number} L'indice de la première liste de 'listeMatch' ne contenant aucun élément de 'listeJoueursOccupes', 
+ * @return {number} L'indice de la première liste de 'listeMatch' ne contenant aucun élément de 'listeJoueursOccupes',
  *                  ou -1 si aucune liste ne correspond à ce critère.
  */
 function notIncluded(listeMatch, listeJoueursOccupes) {
@@ -241,7 +251,7 @@ function lancerProchainsMatchs(){
             } else {
                 afficherMessageFin("Aucun match 2v2 disponible");
             }
-            
+
             if (listeMatch2v2.length > 0) {
                 joueursTerrains2 = listeMatch2v2[(notIncluded(listeMatch2v2,joueursOccupes))];
                 listeMatch2v2.splice((notIncluded(listeMatch2v2,joueursOccupes)), 1);
@@ -249,22 +259,23 @@ function lancerProchainsMatchs(){
             } else {
                 afficherMessageFin("Aucun match 2v2 disponible");
             }
-            
-            
+
+
         }else if (nbJoueurs >= 6){
-            // Generer liste match 2v2 avec liste players pour le terrain 1 et liste match 1v1 pour le terrain 2
-            if (listeMatch2v2.length > 0) {
-                joueursTerrains1 = listeMatch2v2.shift();
-                joueursOccupes = joueursTerrains1 ;
-            } else {
-                afficherMessageFin("Aucun match 2v2 disponible");
-            }            
-            if (listeMatch1v1.length > 0) {
-                joueursTerrains2 = listeMatch1v1.splice((notIncluded(listeMatch1v1,joueursOccupes)), 1);
-                joueursOccupes = joueursOccupes.concat(joueursTerrains2);
-            } else {
-                afficherMessageFin("Aucun match 1v1 disponible");
-            }
+          // Generer liste match 2v2 avec liste players pour le terrain 1 et  une liste match 1v1 pour le terrain 2 et 3
+          if (listeMatch2v2.length > 0) {
+              joueursTerrains1 = listeMatch2v2.shift();
+              joueursOccupes = joueursTerrains1 ;
+          } else {
+              afficherMessageFin("Aucun match 2v2 disponible");
+          }
+          if (listeMatch1v1.length > 0) {
+              joueursTerrains2 = listeMatch1v1[(notIncluded(listeMatch1v1,joueursOccupes))];
+              listeMatch1v1.splice((notIncluded(listeMatch1v1,joueursOccupes)), 1);
+              joueursOccupes = joueursOccupes.concat(joueursTerrains2);
+          } else {
+              afficherMessageFin("Aucun match disponible");
+          }
         }else if (nbJoueurs >= 4){
             // Generer liste match 1v1 avec liste players pour le terrain 1 et 2
             if (listeMatch1v1.length > 0) {
@@ -280,7 +291,7 @@ function lancerProchainsMatchs(){
             } else {
                 afficherMessageFin("Aucun match 1v1 disponible");
             }
-            
+
         }else {
             afficherMessageErreur("Nombre de terrains non supporté");
         }
@@ -292,21 +303,21 @@ function lancerProchainsMatchs(){
                 joueursOccupes = joueursTerrains1 ;
             } else {
                 afficherMessageFin("Aucun match 2v2 disponible");
-            }                        
+            }
             if (listeMatch2v2.length > 0) {
                 joueursTerrains2 = listeMatch2v2[(notIncluded(listeMatch2v2,joueursOccupes))];
                 listeMatch2v2.splice((notIncluded(listeMatch2v2,joueursOccupes)), 1);
                 joueursOccupes = joueursOccupes.concat(joueursTerrains2);
             } else {
                 afficherMessageFin("Aucun match 2v2 disponible");
-            }                 
+            }
             if (listeMatch2v2.length > 0) {
                 joueursTerrains3 = listeMatch2v2[(notIncluded(listeMatch2v2,joueursOccupes))];
                 listeMatch2v2.splice((notIncluded(listeMatch2v2,joueursOccupes)), 1);
                 joueursOccupes = joueursOccupes.concat(joueursTerrains3);
             } else {
                 afficherMessageFin("Aucun match 2v2 disponible");
-            }                    
+            }
         }else if (nbJoueurs >= 10){
             // Generer liste match 2v2 avec liste players pour le terrain 1 et 2 liste match 1v1 pour le terrain 3
             if (listeMatch2v2.length > 0) {
@@ -314,21 +325,21 @@ function lancerProchainsMatchs(){
                 joueursOccupes = joueursTerrains1 ;
             } else {
                 afficherMessageFin("Aucun match 2v2 disponible");
-            }                
+            }
             if (listeMatch2v2.length > 0) {
                 joueursTerrains2 = listeMatch2v2[(notIncluded(listeMatch2v2,joueursOccupes))];
                 listeMatch2v2.splice((notIncluded(listeMatch2v2,joueursOccupes)), 1);
                 joueursOccupes = joueursOccupes.concat(joueursTerrains2);
             } else {
                 afficherMessageFin("Aucun match 2v2 disponible");
-            }                           
+            }
             if (listeMatch1v1.length > 0) {
                 joueursTerrains3 = listeMatch1v1[(notIncluded(listeMatch1v1,joueursOccupes))];
                 listeMatch1v1.splice((notIncluded(listeMatch1v1,joueursOccupes)), 1);
                 joueursOccupes = joueursOccupes.concat(joueursTerrains3);
             } else {
                 afficherMessageFin("Aucun match 2v2 disponible");
-            }                   
+            }
         }else if (nbJoueurs >= 8){
             // Generer liste match 2v2 avec liste players pour le terrain 1 et  une liste match 1v1 pour le terrain 2 et 3
             if (listeMatch2v2.length > 0) {
@@ -336,7 +347,7 @@ function lancerProchainsMatchs(){
                 joueursOccupes = joueursTerrains1 ;
             } else {
                 afficherMessageFin("Aucun match 2v2 disponible");
-            }                               
+            }
             if (listeMatch1v1.length > 0) {
                 joueursTerrains2 = listeMatch1v1[(notIncluded(listeMatch1v1,joueursOccupes))];
                 listeMatch1v1.splice((notIncluded(listeMatch1v1,joueursOccupes)), 1);
@@ -372,12 +383,18 @@ function lancerProchainsMatchs(){
                 joueursOccupes = joueursOccupes.concat(joueursTerrains3);
             } else {
                 afficherMessageFin("Aucun match disponible");
-            }            
+            }
         }else {
             afficherMessageErreur("Nombre de terrains non supporté");
         }
     }
     console.log("console log"+joueursOccupes)
+    console.log("Joueurs Terrain 1: "+joueursTerrains1)
+    console.log("Joueurs Terrain 2: "+joueursTerrains2)
+    console.log("Joueurs Terrain 3: "+joueursTerrains3)
+    console.log("len terrain 2 "+joueursTerrains1[0])
+
+
 }
 function getCombinations(arr, size) {
     let results = [];
@@ -397,7 +414,7 @@ function getCombinations(arr, size) {
     combine(arr, [], 0);
     return results;
 }
-// Genere une liste de match 2v2 sans répétitions de matchs 
+// Genere une liste de match 2v2 sans répétitions de matchs
 // Un match est représenté par une liste des 4 joueurs participant au match, les 2 premiers de cette liste font partie de l'équipe 1 et les 2 derniers de cette liste font partie de l'équipe 2
 function genererListeMatch2v2(liste) {
     let combinaisons = [];
@@ -414,7 +431,7 @@ function genererListeMatch2v2(liste) {
     }
     return combinaisons;
 }
-// Genere une liste de match 1v1 sans répétitions de matchs 
+// Genere une liste de match 1v1 sans répétitions de matchs
 // Un match est représenté par une liste de 2 joueurs participant au match, le premier fait partie de l'équipe 1 et le deuxieme fait partie de l'équipe 2
 function genererListeMatch1v1(liste) {
     let combinaisons = [];
