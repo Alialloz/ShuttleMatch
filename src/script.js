@@ -109,7 +109,7 @@ function displayCourts(courts) {
 
                     // Choisir l'image en fonction de la position du joueur
                     const playerImage = document.createElement('img');
-                    playerImage.src = index % 2 === 0 ? './images/joueur1.png' : './images/joueur2.png';
+                    playerImage.src = index % 2 === 0 ? './images/tennisman.png' : './images/tennisman.png';
                     playerImage.alt = 'Photo de ' + player;
                     playerDiv.appendChild(playerImage);
 
@@ -270,8 +270,8 @@ function lancerProchainsMatchs(){
             }
 
             if (listeMatch2v2.length > 0) {
-                joueursTerrains2 = listeMatch2v2[(notIncluded(listeMatch2v2,joueursOccupes))-1];
-                listeMatch2v2.splice((notIncluded(listeMatch2v2,joueursOccupes))-1, 1);
+                joueursTerrains2 = listeMatch2v2[(notIncluded(listeMatch2v2,joueursOccupes))];
+                listeMatch2v2.splice((notIncluded(listeMatch2v2,joueursOccupes)), 1);
                 joueursOccupes = joueursOccupes.concat(joueursTerrains2);
             } else {
                 afficherMessageFin("Aucun match 2v2 disponible");
@@ -287,8 +287,8 @@ function lancerProchainsMatchs(){
               afficherMessageFin("Aucun match 2v2 disponible");
           }
           if (listeMatch1v1.length > 0) {
-              joueursTerrains2 = listeMatch1v1[(notIncluded(listeMatch1v1,joueursOccupes))-1];
-              listeMatch1v1.splice((notIncluded(listeMatch1v1,joueursOccupes))-1, 1);
+              joueursTerrains2 = listeMatch1v1[(notIncluded(listeMatch1v1,joueursOccupes))];
+              listeMatch1v1.splice((notIncluded(listeMatch1v1,joueursOccupes)), 1);
               joueursOccupes = joueursOccupes.concat(joueursTerrains2);
           } else {
               afficherMessageFin("Aucun match disponible");
@@ -302,8 +302,8 @@ function lancerProchainsMatchs(){
                 afficherMessageFin("Aucun match 1v1 disponible");
             }
             if (listeMatch1v1.length > 0) {
-                joueursTerrains2 = listeMatch1v1[(notIncluded(listeMatch1v1,joueursOccupes))-1];
-                listeMatch1v1.splice((notIncluded(listeMatch1v1,joueursOccupes))-1, 1);
+                joueursTerrains2 = listeMatch1v1[(notIncluded(listeMatch1v1,joueursOccupes))];
+                listeMatch1v1.splice((notIncluded(listeMatch1v1,joueursOccupes)), 1);
                 joueursOccupes = joueursOccupes.concat(joueursTerrains2);
             } else {
                 afficherMessageFin("Aucun match 1v1 disponible");
@@ -321,16 +321,19 @@ function lancerProchainsMatchs(){
             } else {
                 afficherMessageFin("Aucun match 2v2 disponible");
             }
+            console.log('Joueurs oqp 1 : ' + joueursOccupes);
             if (listeMatch2v2.length > 0) {
-                joueursTerrains2 = listeMatch2v2[(notIncluded(listeMatch2v2,joueursOccupes)-1)];
-                listeMatch2v2.splice((notIncluded(listeMatch2v2,joueursOccupes))-1, 1);
+                joueursTerrains2 = listeMatch2v2[(notIncluded(listeMatch2v2,joueursOccupes))];
+                listeMatch2v2.splice((notIncluded(listeMatch2v2,joueursOccupes)), 1);
                 joueursOccupes = joueursOccupes.concat(joueursTerrains2);
             } else {
                 afficherMessageFin("Aucun match 2v2 disponible");
             }
+            console.log('Joueurs oqp 2  : ' + joueursOccupes);
+
             if (listeMatch2v2.length > 0) {
-                joueursTerrains3 = listeMatch2v2[(notIncluded(listeMatch2v2,joueursOccupes))-1];
-                listeMatch2v2.splice((notIncluded(listeMatch2v2,joueursOccupes))-1, 1);
+                joueursTerrains3 = listeMatch2v2[(notIncluded(listeMatch2v2,joueursOccupes))];
+                listeMatch2v2.splice((notIncluded(listeMatch2v2,joueursOccupes)), 1);
                 joueursOccupes = joueursOccupes.concat(joueursTerrains3);
             } else {
                 afficherMessageFin("Aucun match 2v2 disponible");
@@ -344,15 +347,15 @@ function lancerProchainsMatchs(){
                 afficherMessageFin("Aucun match 2v2 disponible");
             }
             if (listeMatch2v2.length > 0) {
-                joueursTerrains2 = listeMatch2v2[(notIncluded(listeMatch2v2,joueursOccupes))-1];
-                listeMatch2v2.splice((notIncluded(listeMatch2v2,joueursOccupes))-1, 1);
+                joueursTerrains2 = listeMatch2v2[(notIncluded(listeMatch2v2,joueursOccupes))];
+                listeMatch2v2.splice((notIncluded(listeMatch2v2,joueursOccupes)), 1);
                 joueursOccupes = joueursOccupes.concat(joueursTerrains2);
             } else {
                 afficherMessageFin("Aucun match 2v2 disponible");
             }
             if (listeMatch1v1.length > 0) {
-                joueursTerrains3 = listeMatch1v1[(notIncluded(listeMatch1v1,joueursOccupes))-1];
-                listeMatch1v1.splice((notIncluded(listeMatch1v1,joueursOccupes))-1, 1);
+                joueursTerrains3 = listeMatch1v1[(notIncluded(listeMatch1v1,joueursOccupes))];
+                listeMatch1v1.splice((notIncluded(listeMatch1v1,joueursOccupes)), 1);
                 joueursOccupes = joueursOccupes.concat(joueursTerrains3);
             } else {
                 afficherMessageFin("Aucun match 2v2 disponible");
@@ -366,15 +369,15 @@ function lancerProchainsMatchs(){
                 afficherMessageFin("Aucun match 2v2 disponible");
             }
             if (listeMatch1v1.length > 0) {
-                joueursTerrains2 = listeMatch1v1[(notIncluded(listeMatch1v1,joueursOccupes))-1];
-                listeMatch1v1.splice((notIncluded(listeMatch1v1,joueursOccupes))-1, 1);
+                joueursTerrains2 = listeMatch1v1[(notIncluded(listeMatch1v1,joueursOccupes))];
+                listeMatch1v1.splice((notIncluded(listeMatch1v1,joueursOccupes)), 1);
                 joueursOccupes = joueursOccupes.concat(joueursTerrains2);
             } else {
                 afficherMessageFin("Aucun match disponible");
             }
             if (listeMatch1v1.length > 0) {
-                joueursTerrains3 = listeMatch1v1[(notIncluded(listeMatch1v1,joueursOccupes))-1];
-                listeMatch1v1.splice((notIncluded(listeMatch1v1,joueursOccupes))-1, 1);
+                joueursTerrains3 = listeMatch1v1[(notIncluded(listeMatch1v1,joueursOccupes))];
+                listeMatch1v1.splice((notIncluded(listeMatch1v1,joueursOccupes)), 1);
                 joueursOccupes = joueursOccupes.concat(joueursTerrains3);
             } else {
                 afficherMessageFin("Aucun match disponible");
@@ -388,15 +391,15 @@ function lancerProchainsMatchs(){
                 afficherMessageFin("Aucun match disponible");
             }
             if (listeMatch1v1.length > 0) {
-                joueursTerrains2 = listeMatch1v1[(notIncluded(listeMatch1v1,joueursOccupes))-1];
-                listeMatch1v1.splice((notIncluded(listeMatch1v1,joueursOccupes))-1, 1);
+                joueursTerrains2 = listeMatch1v1[(notIncluded(listeMatch1v1,joueursOccupes))];
+                listeMatch1v1.splice((notIncluded(listeMatch1v1,joueursOccupes)), 1);
                 joueursOccupes = joueursOccupes.concat(joueursTerrains2);
             } else {
                 afficherMessageFin("Aucun match disponible");
             }
             if (listeMatch1v1.length > 0) {
-                joueursTerrains3 = listeMatch1v1[(notIncluded(listeMatch1v1,joueursOccupes))-1];
-                listeMatch1v1.splice((notIncluded(listeMatch1v1,joueursOccupes))-1, 1);
+                joueursTerrains3 = listeMatch1v1[(notIncluded(listeMatch1v1,joueursOccupes))];
+                listeMatch1v1.splice((notIncluded(listeMatch1v1,joueursOccupes)), 1);
                 joueursOccupes = joueursOccupes.concat(joueursTerrains3);
             } else {
                 afficherMessageFin("Aucun match disponible");
@@ -433,30 +436,27 @@ function getCombinations(arr, size) {
 }
 // Genere une liste de match 2v2 sans répétitions de matchs
 // Un match est représenté par une liste des 4 joueurs participant au match, les 2 premiers de cette liste font partie de l'équipe 1 et les 2 derniers de cette liste font partie de l'équipe 2
-function genererListeMatch2v2(liste) {
-    let combinaisons = [];
-    let pairesDejaJouees = new Set();
+function genererListeMatch2v2(players) {
+    let matches = [];
+    let pairs = [];
 
-    for (let i = 0; i < liste.length; i++) {
-        for (let j = i + 1; j < liste.length; j++) {
-            let equipeA = [liste[i], liste[j]].sort().join("-");
+    // Créer toutes les combinaisons possibles de paires de joueurs
+    for (let i = 0; i < players.length; i++) {
+        for (let j = i + 1; j < players.length; j++) {
+            pairs.push([players[i], players[j]]);
+        }
+    }
 
-            for (let k = 0; k < liste.length; k++) {
-                if (k == i || k == j) continue;
-                for (let l = k + 1; l < liste.length; l++) {
-                    if (l == i || l == j) continue;
-                    
-                    let equipeB = [liste[k], liste[l]].sort().join("-");
-                    if (!pairesDejaJouees.has(equipeA) && !pairesDejaJouees.has(equipeB)) {
-                        combinaisons.push([liste[i], liste[j], liste[k], liste[l]]);
-                        pairesDejaJouees.add(equipeA);
-                        pairesDejaJouees.add(equipeB);
-                    }
-                }
+    // Trouver des combinaisons uniques pour les matchs 2v2
+    for (let i = 0; i < pairs.length; i++) {
+        for (let j = i + 1; j < pairs.length; j++) {
+            if (!pairs[i].includes(pairs[j][0]) && !pairs[i].includes(pairs[j][1])) {
+                matches.push([...pairs[i], ...pairs[j]]);
             }
         }
     }
-    return combinaisons;
+
+    return matches;
 }
 // Genere une liste de match 1v1 sans répétitions de matchs
 // Un match est représenté par une liste de 2 joueurs participant au match, le premier fait partie de l'équipe 1 et le deuxieme fait partie de l'équipe 2
