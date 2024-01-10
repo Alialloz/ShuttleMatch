@@ -19,6 +19,7 @@ var nombreDeTerrains = 0;
 
 var courts = [];
 var test = 0 ;
+var iterationMatch = 0;
 
 // Crée des champs de saisie pour entrer les noms des joueurs
 function createPlayerInputs() {
@@ -56,9 +57,13 @@ function collectPlayerNames() {
     let playersForAssignment = [...playerNames];
     listeJoueurs = [...playerNames];
 
-    genererMatch(playersForAssignment, nombreDeTerrains);
+    genererMatch(listeJoueurs, nombreDeTerrains);
     lancerProchainsMatchs();
+
     courts = [joueursTerrains1,joueursTerrains2,joueursTerrains3];
+
+    console.log("Premier court  : " + courts);
+    
 
     console.log("Toutes les combinaisons possibles :");
     console.log("1v1:");
@@ -75,10 +80,11 @@ function collectPlayerNames() {
           } catch(error){
             shuffleArray(listeMatch1v1);
             shuffleArray(listeMatch2v2);
+            console.log('errrrrrr1');
         }
     }
     test=0; 
-
+    displayCourts(courts);
     // Enleve les inputs des noms de joueurs
     removePlayerInputForm();
 }
@@ -147,8 +153,9 @@ function displayCourts(courts) {
 
 //Implementation pour le bouton 'Jouer prochain match'
 function jouer() {
-    
+    let compteur = 0;
     while (test==0){
+        
         try {
             shuffleArray(listeMatch1v1);
             shuffleArray(listeMatch2v2);
@@ -159,10 +166,41 @@ function jouer() {
           } catch(error){
             shuffleArray(listeMatch1v1);
             shuffleArray(listeMatch2v2);
+            console.log('errrrrrr2');
+            console.log('terrain 1   apr err '+ joueursTerrains1 );
+            if(compteur < 1){
+                restaurerTerrains();
+            }
+            console.log('Liste match  apr err '+ listeMatch2v2 );
         }
     }
     test=0; 
     console.log('Le bouton a été cliqué !');
+}
+function restaurerTerrains() {
+    if (Array.isArray(joueursTerrains1)) {
+        if (joueursTerrains1.length === 2) {
+            listeMatch1v1.push(joueursTerrains1);
+        } else if (joueursTerrains1.length === 4) {
+            listeMatch2v2.push(joueursTerrains1);
+        }
+    }
+
+    if (Array.isArray(joueursTerrains2)) {
+        if (joueursTerrains2.length === 2) {
+            listeMatch1v1.push(joueursTerrains2);
+        } else if (joueursTerrains2.length === 4) {
+            listeMatch2v2.push(joueursTerrains2);
+        }
+    }
+
+    if (Array.isArray(joueursTerrains3)) {
+        if (joueursTerrains3.length === 2) {
+            listeMatch1v1.push(joueursTerrains3);
+        } else if (joueursTerrains3.length === 4) {
+            listeMatch2v2.push(joueursTerrains3);
+        }
+    }
 }
 
 // Assignation des match en fonction du nombre de joueurs et du nombre de terrain.
@@ -211,11 +249,6 @@ function genererMatch(players, nombreDeTerrains) {
             // Generer un message d'erreur : joueurs insuffisants pour 2 terrains, pour 3 terrains il vous faut au moins 6 joueurs
         }
     }
-
-    let listesMatchs = {
-        listeMatch2v2,
-        listeMatch1v1
-    };
 }
 /**
  * Je te commente un peu plus en detail cette fonction pour que tu puisse bien la comprendre
@@ -242,6 +275,8 @@ function lancerProchainsMatchs(){
     joueursTerrains1 = [];
     joueursTerrains2 = [];
     joueursTerrains3 = [];
+
+    console.log('Liste match  '+ listeMatch2v2 );
     if (nombreDeTerrains == 1){
         if(nbJoueurs >= 4){
             // Generer liste match 2v2 avec liste players
@@ -282,6 +317,9 @@ function lancerProchainsMatchs(){
           // Generer liste match 2v2 avec liste players pour le terrain 1 et  une liste match 1v1 pour le terrain 2 et 3
           if (listeMatch2v2.length > 0) {
               joueursTerrains1 = listeMatch2v2.shift();
+            //   if (iterationMatch == 0){
+            //     joueursTerrains1 = listeMatch2v2[0];
+            //   }
               joueursOccupes = joueursTerrains1 ;
           } else {
               afficherMessageFin("Aucun match 2v2 disponible");
@@ -414,6 +452,7 @@ function lancerProchainsMatchs(){
     console.log("Joueurs Terrain 3: "+joueursTerrains3)
     console.log("len terrain 2 "+joueursTerrains1[0])
 
+    iterationMatch ++ ;
 
 }
 function getCombinations(arr, size) {
@@ -475,19 +514,21 @@ function genererListeMatch1v1(liste) {
 // Mélange aléatoirement un tableau
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
-        // Générer un index aléatoire inférieur à i
-        const j = Math.floor(Math.random() * (i + 1));
+        // Choisir un élément aléatoire avant l'élément courant
+        let j = Math.floor(Math.random() * (i + 1));
 
-        // Échanger les éléments array[i] et array[j]
+        // Échanger l'élément courant avec l'élément aléatoire choisi
         [array[i], array[j]] = [array[j], array[i]];
     }
+
+    return array;
 }
 function afficherMessageFin(message) {
     console.log(message);
     // Relancer l'index après 10 secondes
-    setTimeout(function() {
-        location.reload();
-    }, 10000);
+    // setTimeout(function() {
+    //     location.reload();
+    // }, 10000);
 }
 function afficherMessageErreur(message) {
     console.log(message);
