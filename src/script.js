@@ -18,6 +18,7 @@ var nombreDeJoueurs = 0;
 var nombreDeTerrains = 0;
 
 var courts = [];
+var test = 0 ;
 
 // Crée des champs de saisie pour entrer les noms des joueurs
 function createPlayerInputs() {
@@ -67,13 +68,16 @@ function collectPlayerNames() {
 
 
     // Afficher les joueurs sur les terrains
-    try {
-        displayCourts(courts);
-      } catch(error){
-        shuffleArray(listeMatch1v1)
-        shuffleArray(listeMatch2v2)
-        displayCourts(courts);
-      }
+    while (test==0){
+        try {
+            displayCourts(courts);
+            test=1;
+          } catch(error){
+            shuffleArray(listeMatch1v1);
+            shuffleArray(listeMatch2v2);
+        }
+    }
+    test=0; 
 
     // Enleve les inputs des noms de joueurs
     removePlayerInputForm();
@@ -143,11 +147,21 @@ function displayCourts(courts) {
 
 //Implementation pour le bouton 'Jouer prochain match'
 function jouer() {
-    shuffleArray(listeMatch1v1);
-    shuffleArray(listeMatch2v2);
-    lancerProchainsMatchs();
-    courts = [joueursTerrains1,joueursTerrains2,joueursTerrains3];
-    displayCourts(courts);
+    
+    while (test==0){
+        try {
+            shuffleArray(listeMatch1v1);
+            shuffleArray(listeMatch2v2);
+            lancerProchainsMatchs();
+            courts = [joueursTerrains1,joueursTerrains2,joueursTerrains3];
+            displayCourts(courts);
+            test=1;
+          } catch(error){
+            shuffleArray(listeMatch1v1);
+            shuffleArray(listeMatch2v2);
+        }
+    }
+    test=0; 
     console.log('Le bouton a été cliqué !');
 }
 
