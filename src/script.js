@@ -80,7 +80,6 @@ function displayCourts(courts) {
 
         // Vérifier si le terrain a été trouvé
         if (courtElement) {
-          try{
             if (players.length > 0) {
                 // Nettoyer le contenu actuel et ajouter l'en-tête du terrain
                 courtElement.innerHTML = `<h2>Terrain ${courtIndex + 1}</h2><div class="net"></div>`;
@@ -130,10 +129,6 @@ function displayCourts(courts) {
                 // Si pas de joueurs, nettoyer le contenu du terrain
                 courtElement.innerHTML = '';
             }
-          }catch(error){
-            alert('Fin des Matchs !');
-            location.reload();
-          }
         }
     });
 }
