@@ -130,7 +130,7 @@ body {
 .player {
     display: flex; /* Utilisez flexbox pour aligner l'image et le texte */
     align-items: center; /* Centre verticalement les éléments dans le div */
-    border: 1px solid #ddd;
+
     padding: 5px;
     margin: 10px;
 }
