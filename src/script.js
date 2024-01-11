@@ -236,7 +236,7 @@ function generateMatchCombinations(playerNames) {
 
 
 // Assignation des match en fonction du nombre de joueurs et du nombre de terrain.
-function genererMatch(players, nombreDeTerrains) {
+function genererMatch2(players, nombreDeTerrains) {
     let nbJoueurs = players.length;
     let listePly = players; 
     let combinaisonss = generateMatchCombinations(listePly);
@@ -351,52 +351,52 @@ function genererMatch(players, nombreDeTerrains) {
     }
 }
 // Assignation des match en fonction du nombre de joueurs et du nombre de terrain.
-// function genererMatch(players, nombreDeTerrains) {
-//     let nbJoueurs = players.length;
+function genererMatch(players, nombreDeTerrains) {
+    let nbJoueurs = players.length;
 
-//     if (nombreDeTerrains == 1){
-//         if(nbJoueurs >= 4){
-//             // Generer liste match 2v2 avec liste players
-//             listeMatch2v2 = genererListeMatch2v2(players);
-//         }else {
-//             // Generer liste match 1v1 avec liste players
-//             listeMatch1v1 = genererListeMatch1v1(players);
-//         }
+    if (nombreDeTerrains == 1){
+        if(nbJoueurs >= 4){
+            // Generer liste match 2v2 avec liste players
+            listeMatch2v2 = genererListeMatch2v2(players);
+        }else {
+            // Generer liste match 1v1 avec liste players
+            listeMatch1v1 = genererListeMatch1v1(players);
+        }
 
-//     }else if (nombreDeTerrains == 2){
-//         if(nbJoueurs >= 8){
-//             // Generer liste match 2v2 avec liste players pour le terrain 1 et 2
-//             listeMatch2v2 = genererListeMatch2v2(players);
-//         }else if (nbJoueurs >= 6){
-//             // Generer liste match 2v2 avec liste players pour le terrain 1 et liste match 1v1 pour le terrain 2
-//             listeMatch2v2 = genererListeMatch2v2(players);
-//             listeMatch1v1 = genererListeMatch1v1(players);
-//         }else if (nbJoueurs >= 4){
-//             // Generer liste match 1v1 avec liste players pour le terrain 1 et 2
-//             listeMatch1v1 = genererListeMatch1v1(players);
-//         }else {
-//             // Generer un message d'erreur : joueurs insuffisants pour 2 terrains, pour 2 terrains il vous faut au moins 4 joueurs
-//         }
-//     }else if (nombreDeTerrains == 3){
-//         if(nbJoueurs == 12){
-//             // Generer liste match 2v2 avec liste players pour le terrain 1, 2 et 3
-//             listeMatch2v2 = genererListeMatch2v2(players);
-//         }else if (nbJoueurs >= 10){
-//             // Generer liste match 2v2 avec liste players pour le terrain 1 et 2 liste match 1v1 pour le terrain 3
-//             listeMatch2v2 = genererListeMatch2v2(players);
-//             listeMatch1v1 = genererListeMatch1v1(players);
-//         }else if (nbJoueurs >= 8){
-//             // Generer liste match 2v2 avec liste players pour le terrain 1 et  une liste match 1v1 pour le terrain 2 et 3
-//             listeMatch2v2 = genererListeMatch2v2(players);
-//             listeMatch1v1 = genererListeMatch1v1(players);
-//         }else if (nbJoueurs >= 6){
-//             // Generer liste match 1v1 avec liste players pour le terrain 1 2 et 3
-//             listeMatch1v1 = genererListeMatch1v1(players);
-//         }else {
-//             // Generer un message d'erreur : joueurs insuffisants pour 2 terrains, pour 3 terrains il vous faut au moins 6 joueurs
-//         }
-//     }
-// }
+    }else if (nombreDeTerrains == 2){
+        if(nbJoueurs >= 8){
+            // Generer liste match 2v2 avec liste players pour le terrain 1 et 2
+            listeMatch2v2 = genererListeMatch2v2(players);
+        }else if (nbJoueurs >= 6){
+            // Generer liste match 2v2 avec liste players pour le terrain 1 et liste match 1v1 pour le terrain 2
+            listeMatch2v2 = genererListeMatch2v2(players);
+            listeMatch1v1 = genererListeMatch1v1(players);
+        }else if (nbJoueurs >= 4){
+            // Generer liste match 1v1 avec liste players pour le terrain 1 et 2
+            listeMatch1v1 = genererListeMatch1v1(players);
+        }else {
+            // Generer un message d'erreur : joueurs insuffisants pour 2 terrains, pour 2 terrains il vous faut au moins 4 joueurs
+        }
+    }else if (nombreDeTerrains == 3){
+        if(nbJoueurs == 12){
+            // Generer liste match 2v2 avec liste players pour le terrain 1, 2 et 3
+            listeMatch2v2 = genererListeMatch2v2(players);
+        }else if (nbJoueurs >= 10){
+            // Generer liste match 2v2 avec liste players pour le terrain 1 et 2 liste match 1v1 pour le terrain 3
+            listeMatch2v2 = genererListeMatch2v2(players);
+            listeMatch1v1 = genererListeMatch1v1(players);
+        }else if (nbJoueurs >= 8){
+            // Generer liste match 2v2 avec liste players pour le terrain 1 et  une liste match 1v1 pour le terrain 2 et 3
+            listeMatch2v2 = genererListeMatch2v2(players);
+            listeMatch1v1 = genererListeMatch1v1(players);
+        }else if (nbJoueurs >= 6){
+            // Generer liste match 1v1 avec liste players pour le terrain 1 2 et 3
+            listeMatch1v1 = genererListeMatch1v1(players);
+        }else {
+            // Generer un message d'erreur : joueurs insuffisants pour 2 terrains, pour 3 terrains il vous faut au moins 6 joueurs
+        }
+    }
+}
 /**
  * Je te commente un peu plus en detail cette fonction pour que tu puisse bien la comprendre
  * Cherche la première liste dans 'listeMatch' qui ne contient aucun élément présent dans 'listeJoueursOccupes'.
