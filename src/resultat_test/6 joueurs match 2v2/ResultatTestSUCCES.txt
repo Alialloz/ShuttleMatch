@@ -1,0 +1,17 @@
+Resultat test 6 joueurs match 2v2 :
+
+Toutes les possibilitees des matchs sont explorees avec 6 joueurs.
+Touts les matchs 2v2 possibles sont effectuees : 
+
+liste joueurs : 1, 2, ... , 10
+-Match initial (premier match) : 
+ ['1', '2', '3', '4'] Reussi 
+
+-Liste combinaise possible :
+
+ ['1', '3', '2', '4'] Reussi
+ ['1', '4', '2', '3'] Reussi
+ ['1', '5', '2', '6'] Reussi
+ ['1', '6', '2', '5'] Reussi
+ ['3', '5', '4', '6'] Reussi
+ ['3', '6', '4', '5'] Reussi
